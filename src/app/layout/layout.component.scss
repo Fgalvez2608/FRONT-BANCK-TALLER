@@ -1,0 +1,40 @@
+
+
+nz-header {
+    background: #fff;
+    padding: 0;
+}
+
+nz-sider {
+    li {
+        color: #fff;
+        cursor: pointer;
+        margin: 5px;
+        transition: all 0, 2s;
+        border-radius: 10px 0 0 10px;
+        list-style: none;
+        padding: 2px 10px;
+    }
+    li:hover {
+        background: rgb(102, 146, 240);
+    }
+}
+
+nz-content {
+    margin: 0 16px;
+    width: 1000px;
+}
+
+nz-breadcrumb {
+    margin: 16px 0;
+}
+
+.inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+    width: 1000px;
+}
+
+
+

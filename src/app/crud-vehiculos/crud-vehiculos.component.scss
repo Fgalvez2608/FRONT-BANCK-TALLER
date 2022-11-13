@@ -1,0 +1,24 @@
+.cls-form {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    align-items: flex-end;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    input {
+        margin-bottom: 10px;
+    }
+    .cls-row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .cls-field {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+}

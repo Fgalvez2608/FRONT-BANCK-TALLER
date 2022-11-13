@@ -1,0 +1,141 @@
+<div>
+
+  <div
+    style="display: flex; justify-content: space-between; align-items: center">
+    <div>
+      <input
+        style="margin-right: 10px"
+        type="text"
+        placeholder="Buscar"
+        [(ngModel)]="campoBuscar"
+      />
+      <button style="margin-bottom: 20px" (click)="getVehiFilter()">
+        Buscar
+      </button>
+      <button style="margin-bottom: 20px" (click)="setShowForm()">
+        Agregar Nuevo
+      </button>
+    </div>
+  </div>
+
+  <nz-table #basicTable [nzData]="listVehi">
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th>Tipo</th>
+        <th>Marca</th>
+        <th>Linea</th>
+        <th>Modelo</th>
+        <th>Cilindraje</th>
+        <th>Capacidad</th>
+        <th>Pais de Origen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let data of basicTable.data" (click)="clickVehi(data)">
+        <td>{{ data.placa }}</td>
+        <td>{{ data.tipo }}</td>
+        <td>{{ data.marca }}</td>
+        <td>{{ data.linea }}</td>
+        <td>{{ data.modelo }}</td>
+        <td>{{ data.cilindraje }}</td>
+        <td>{{ data.capacidad }}</td>
+        <td>{{ data.paisOrigen }}</td>
+
+        <td>
+          <a (click)="selecVehiEdit(data)">Editar</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleteVehi(data.placa)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </nz-table>
+</div>
+
+<nz-modal
+  [(nzVisible)]="showForm"
+  [nzOkText]="null"
+  nzCancelText="Cancelar"
+  nzTitle="Formulario"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+
+    <div class="cls-form" [formGroup]="formVehi">
+
+      <div class="cls-row">
+        <div class="cls-field">
+          <label for="">Placa</label>
+          <input type="text" formControlName="placa" />
+        </div>
+        <div class="cls-field">
+          <label for="">Tipo</label>
+          <input type="text" formControlName="tipo" />
+        </div>
+      </div>
+
+      <div class="cls-row">
+        <div class="cls-field">
+          <label for="">Marca</label>
+          <input type="text" formControlName="marca" />
+        </div>
+        <div class="cls-field">
+          <label for="">Linea</label>
+          <input type="text" formControlName="linea" />
+        </div>
+      </div>
+
+      <div class="cls-row">
+        <div class="cls-field">
+          <label for="">modelo</label>
+          <input type="text" formControlName="modelo" />
+        </div>
+        <div class="cls-field">
+          <label for="">Cilindraje</label>
+          <input type="text" formControlName="cilindraje" />
+        </div>
+      </div>
+
+      <div class="cls-row">
+        <div class="cls-field">
+          <label for="">Capacidad</label>
+          <input type="text" formControlName="capacidad" />
+        </div>
+        <div class="cls-field">
+          <label for="">Pais Origen</label>
+          <input type="text" formControlName="paisOrigen" />
+        </div>
+
+      </div>
+
+      <div class="cls-field">
+        <label for="">Id. Propietario</label>
+        <input type="text" formControlName="propietario" />
+      </div>
+
+      <div>
+        <button
+          *ngIf="modeForm == 'adicion'"
+          (click)="saveVehi()"
+          style="height: 20px"
+        >
+          Agregar
+        </button>
+      </div>
+      <div>
+        <button
+          *ngIf="modeForm == 'edicion'"
+          (click)="editVehi()"
+          style="height: 28px"
+        >
+          Guardar
+        </button>
+      </div>
+
+    </div>
+  </ng-container>
+
+</nz-modal>

@@ -1,0 +1,120 @@
+<div>
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <div>
+      <input
+        style="margin-right: 10px"
+        type="text"
+        placeholder="Buscar"
+        [(ngModel)]="campoBuscar"
+      />
+      <button style="margin-bottom: 20px" (click)="getUsuariosFilter()">
+        Buscar
+      </button>
+      <button style="margin-bottom: 20px" (click)="setShowForm()">
+        Agregar Nuevo
+      </button>
+    </div>
+    
+    <div>
+      <label for="">Sedes:</label>
+      <select
+        name=""
+        id=""
+        style="width: 180px"
+        [(ngModel)]="sedeCurrent"
+        (change)="changeSede()"
+      >
+        <option [value]="sede.idsede" *ngFor="let sede of sedes">
+          {{ sede.nombre }}
+        </option>
+      </select>
+    </div>
+
+  </div>
+
+  <nz-table #basicTable [nzData]="listOfData" style="width:1000px ;">
+
+    <thead>
+      <tr>
+        <th>Identiciacion</th>
+        <th>Nombre</th>
+        <th>Telefono</th>
+        <th>Fecha Nacimiento</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let data of basicTable.data" (click)="clickUser(data)">
+        <td>{{ data.idUsuario }}</td>
+        <td>{{ data.nombre }}</td>
+        <td>{{ data.telefono }}</td>
+        <td>{{ formatDate(data.fechaNacimiento) }}</td>
+        <td>
+          <a (click)="selecUserEdit(data)">Editar</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleteUser(data.idUsuario)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </nz-table>
+</div>
+
+<nz-modal
+  [(nzVisible)]="showForm"
+  [nzOkText]="null"
+  nzCancelText="Cancelar"
+  nzTitle="Formulario"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+
+    <div class="cls-form" [formGroup]="formUser">
+      <div class="cls-row">
+        <div class="cls-field">
+          <label for="">Nombre</label>
+          <input type="text" formControlName="nombre" />
+        </div>
+        <div class="cls-field">
+          <label for="">Telefono</label>
+          <input type="text" formControlName="telefono" />
+        </div>
+      </div>
+
+      <div class="cls-row">
+        <div class="cls-field">
+          <label for="">Fecha Nacimiento</label>
+          <input type="date" formControlName="fechaNacimiento" />
+        </div>
+        <div class="cls-field">
+          <label for="">Contraseña</label>
+          <input type="password" formControlName="contrasenia" />
+        </div>
+      </div>
+
+      <div>
+        <button
+          *ngIf="modeForm == 'adicion'"
+          (click)="saveUser()"
+          style="height: 20px"
+        >
+          Agregar
+        </button>
+      </div>
+      <div>
+        <button
+          *ngIf="modeForm == 'edicion'"
+          (click)="editUser()"
+          style="height: 28px"
+        >
+          Guardar
+        </button>
+      </div>
+
+    </div>
+  </ng-container>
+
+</nz-modal>

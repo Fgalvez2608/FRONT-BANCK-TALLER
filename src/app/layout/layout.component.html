@@ -1,0 +1,32 @@
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item routerLink="/usuarios">
+        <span nz-icon nzType="pie-chart"></span>
+        <span>USUARIOS</span>
+      </li>
+      <li nz-menu-item routerLink="/vehiculos">
+        <span nz-icon nzType="desktop"></span>
+        <span>VEHICULOS</span>
+      </li>
+      <li nz-menu-item routerLink="/mecanicos">
+        <span nz-icon nzType="desktop"></span>
+        <span>MECANICOS</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header></nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
